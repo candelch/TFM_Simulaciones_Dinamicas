@@ -20,6 +20,7 @@ El código fuente se encuentra en el directorio raíz, mientras que los resultad
 ├── global_summary/                          # Gráficas globales comparativas (RMSE, Rango Dinámico, NXCORR).
 ├── helicoidal_jet_movie_triple_2.0.py       # Código maestro: toy model, imaging pipeline y extracción de métricas.
 ├── innercore2.0.py                          # Código de creación y prueba del toy model del jet a escala interna.
+├── ERS.py                                   # Módulo didáctico que ilustra la Síntesis de Rotación Terrestre (Earth Rotation Synthesis).
 ├── plotingcoordinates_satelite3.py          # Script de renderizado geográfico 3D de las estaciones interferométricas.
 ├── uvcolors.py                              # Módulo de generación de gráficos de cobertura UV para la memoria.
 ├── evn_only.txt                             # Coordenadas y especificaciones de las antenas de la red europea.
@@ -35,6 +36,8 @@ El desarrollo teórico parte del script `innercore2.0.py`, el cual contiene el c
 Una vez validado el modelo teórico, la investigación principal se ejecuta mediante `helicoidal_jet_movie_triple_2.0.py`. Este es el código que integra el toy model con el pipeline de imagen (imaging pipeline) y realiza todos los cálculos para los gráficos de análisis. A través de este script genero una simulación temporal de 43 días bajo distintos escenarios de velocidad, simulo las observaciones interferométricas inyectando ruido térmico y aplico procesos iterativos de auto-calibración por fases. Además, este código centraliza la extracción de todas las métricas cuantitativas (como el RMSE, la correlación cruzada normalizada y el rango dinámico) y genera las curvas de evolución global que demuestran la mejora de la red combinada.
 
 Para ilustrar topológicamente la distribución espacial de la red, desarrollé el script `plotingcoordinates_satelite3.py`. Este módulo convierte las coordenadas cartesianas geocéntricas (ECEF) de los telescopios a coordenadas esféricas empleando la librería pyproj. Posteriormente, proyecta las estaciones europeas y africanas sobre un modelo esférico tridimensional de la Tierra mediante cartopy. Esta visualización resulta fundamental en la memoria para contextualizar la enorme extensión física de las líneas de base intercontinentales añadidas.
+
+Para explicar el fundamento físico de la interferometría en la memoria, implementé el módulo `ERS.py`. Este código utiliza un subconjunto reducido de cinco antenas para demostrar el concepto de Síntesis de Rotación Terrestre (Earth Rotation Synthesis). El script genera un panel secuencial que vincula visualmente la rotación del modelo tridimensional de la Tierra con la acumulación simultánea de trazas en el plano de frecuencias espaciales, evidenciando cómo el movimiento planetario permite a una red dispersa de antenas sintetizar una apertura equivalente al diámetro terrestre.
 
 Para respaldar el análisis instrumental en la memoria del TFM, desarrollé el script `uvcolors.py`, destinado exclusivamente a generar los gráficos de cobertura en el plano UV. Este código calcula la ventana de observación óptima para el tránsito de SS 433 y mapea cómo se llena el plano de frecuencias espaciales con la rotación terrestre. Mediante un sistema de gradientes de color cronológicos, estas gráficas permiten visualizar claramente cómo las líneas de base Norte-Sur que aportan las estaciones africanas completan las regiones no muestreadas por la red europea aislada.
 
@@ -65,6 +68,11 @@ Para generar la visualización esférica de la red de telescopios sobre la super
 
 ```bash
 python plotingcoordinates_satelite3.py
+```
+Para generar el panel secuencial de Síntesis de Rotación Terrestre (ERS):
+
+```bash
+python ERS.py
 ```
 
 Para generar los mapas vectoriales del plano UV utilizados en la memoria:

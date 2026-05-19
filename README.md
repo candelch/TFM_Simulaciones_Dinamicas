@@ -6,18 +6,25 @@ Para realizar estas simulaciones he utilizado la librería eht-imaging (ehtim), 
 
 ## Estructura del Repositorio
 
-El código y los resultados están organizados en dos directorios principales para separar el desarrollo analítico de los productos finales:
+El código fuente se encuentra en el directorio raíz, mientras que los resultados generados se agrupan en carpetas según el escenario físico simulado:
 
 ```text
-├── scripts/
-│   ├── helicoidal_jet_movie_triple_2.0.py   # Código completo: toy model, imaging pipeline y cálculos de análisis.
-│   ├── uvcolors.py                          # Generación de gráficos de cobertura UV para la memoria del TFM.
-│   └── innercore2.0.py                      # Código de creación y prueba del toy model del jet.
-├── resultados/
-│   ├── Animation_02_Exagerado.gif           # Evolución temporal (Modelo vs EVN vs EVN+Afr).
-│   └── (Opcional: Añade aquí tus gráficos PDF)
-├── .gitignore                               
-└── README.md                                
+├── 01_Realista/                             # Resultados del escenario de velocidad 1.0x
+│   ├── Animation_01_Realista.gif            # Animación comparativa (Modelo vs EVN vs EVN+Afr).
+│   ├── Animation_EVN_01_Realista.gif        # Animación de la reconstrucción con EVN aislada.
+│   ├── Animation_EVN_Africa_01_Realista.gif # Animación de la reconstrucción con EVN + África.
+│   ├── Animation_Model_01_Realista.gif      # Animación del modelo matemático (Ground Truth).
+│   └── pdf_maps_sample/                     # Mapas y haces de síntesis (beams) exportados en PDF vectorial.
+├── 02_Exagerado/                            # Resultados del escenario de velocidad 5.0x (Estructura análoga).
+├── 03_Extremo/                              # Resultados del escenario de velocidad 20.0x (Estructura análoga).
+├── global_summary/                          # Gráficas globales comparativas (RMSE, Rango Dinámico, NXCORR).
+├── helicoidal_jet_movie_triple_2.0.py       # Código maestro: toy model, imaging pipeline y extracción de métricas.
+├── innercore2.0.py                          # Código de creación y prueba del toy model del jet a escala interna.
+├── uvcolors.py                              # Módulo de generación de gráficos de cobertura UV para la memoria.
+├── evn_only.txt                             # Coordenadas y especificaciones de las antenas de la red europea.
+├── evn_africa.txt                           # Coordenadas y especificaciones de la red extendida a África.
+├── LICENSE                                  # Licencia de uso del código.
+└── README.md                                # Portada del proyecto (Este documento).
 ```
 
 ## Metodología y Scripts
@@ -32,7 +39,7 @@ Para respaldar el análisis instrumental en la memoria del TFM, desarrollé el s
 
 La siguiente animación ilustra el resultado del proceso de reconstrucción dinámico bajo el escenario de cinemática exagerada, comparando el modelo matemático original (generado por el toy model) con las reconstrucciones sintéticas de ambas redes interferométricas:
 
-![Simulación comparativa de SS 433](resultados/Animation_02_Exagerado.gif)
+![Simulación comparativa de SS 433](02_Exagerado/Animation_02_Exagerado.gif)
 
 El análisis de las métricas extraídas durante las simulaciones confirma la necesidad de la expansión de la red. La incorporación de antenas en latitudes sur (como la estación de Hartebeesthoek o los futuros nodos en Ghana y Namibia) aporta líneas de base que son críticas para la resolución angular. 
 
@@ -55,15 +62,16 @@ pip install eht-imaging
 Para generar los mapas vectoriales del plano UV utilizados en la memoria:
 
 ```bash
-python scripts/uvcolors.py
+python uvcolors.py
 ```
 
-Para ejecutar el código completo con el toy model, el pipeline de imagen y la extracción de todas las gráficas de análisis (este proceso requiere un tiempo de cómputo elevado debido a los múltiples bucles de optimización del Imager y los pasos de self-calibration):
+Para ejecutar el código maestro completo (modelado, procesado de imagen y extracción de gráficas), el cual genera automáticamente la estructura de directorios y resultados:
 
 ```bash
-python scripts/helicoidal_jet_movie_triple_2.0.py
+python helicoidal_jet_movie_triple_2.0.py
 ```
+*(Nota: Este último proceso requiere un tiempo de cómputo elevado debido a los múltiples bucles de optimización del Imager y los pasos sucesivos de self-calibration para cada día de observación).*
 
 ---
-Trabajo de Fin de Máster
+Trabajo de Fin de Máster de Candela Chico Herrera
 Año 2026

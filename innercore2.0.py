@@ -6,7 +6,7 @@ import matplotlib.animation as animation
 # --- 1. CONFIGURACIÓN VISUAL ---
 fov = 150 * eh.RADPERUAS
 npix = 256
-freq_obs = 230e9
+freq_obs = 5e9
 
 # --- 2. FÍSICA ---
 total_frames = 250    
@@ -78,15 +78,11 @@ def get_frame_image(frame_idx):
             
     return im.imvec.reshape((npix, npix))
 
-# --- 5. CALIBRACIÓN (LA CLAVE ESTÁ AQUÍ) ---
+# --- 5. CALIBRACIÓN  ---
 print("Calibrando brillo...")
 test_data = get_frame_image(100)
 max_val_real = np.max(test_data) 
 
-# <--- CAMBIO RADICAL: SATURACIÓN FORZADA --->
-# En lugar de multiplicar por 1.1, multiplicamos por 0.4
-# Esto significa que CUALQUIER COSA que brille más del 40% del máximo real
-# se pintará del rojo más intenso posible. Esto "quema" la imagen a propósito.
 vmax_calibrated = max_val_real * 0.4 
 
 print(f"Max Real: {max_val_real:.2f}")

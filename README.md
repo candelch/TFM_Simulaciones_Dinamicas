@@ -14,6 +14,7 @@ El código fuente se encuentra en el directorio raíz, mientras que los resultad
 │   ├── Animation_EVN_01_Realista.gif        # Animación de la reconstrucción con EVN aislada.
 │   ├── Animation_EVN_Africa_01_Realista.gif # Animación de la reconstrucción con EVN + África.
 │   ├── Animation_Model_01_Realista.gif      # Animación del modelo matemático (Ground Truth).
++   ├── temp_frames/                         # Colección de frames individuales que conforman los GIF.
 │   └── pdf_maps_sample/                     # Mapas y haces de síntesis (beams) exportados en PDF vectorial.
 ├── 02_Exagerado/                            # Resultados del escenario de velocidad 5.0x (Estructura análoga).
 ├── 03_Extremo/                              # Resultados del escenario de velocidad 20.0x (Estructura análoga).

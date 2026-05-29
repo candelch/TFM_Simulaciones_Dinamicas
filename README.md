@@ -19,6 +19,7 @@ El código fuente se encuentra en el directorio raíz, mientras que los resultad
 ├── 02_Exagerado/                            # Resultados del escenario de velocidad 5.0x (Estructura análoga).
 ├── 03_Extremo/                              # Resultados del escenario de velocidad 20.0x (Estructura análoga).
 ├── global_summary/                          # Gráficas globales comparativas (RMSE, Rango Dinámico, NXCORR).
+├── kine_final_centrado.gif                  # Animación de la reconstrucción de EVN del escenario 5.0x con Kine.
 ├── helicoidal_jet_movie_triple_2.0.py       # Código maestro: toy model, imaging pipeline y extracción de métricas.
 ├── innercore2.0.py                          # Código de creación y prueba del toy model del jet a escala interna.
 ├── ERS.py                                   # Módulo didáctico que ilustra la Síntesis de Rotación Terrestre (Earth Rotation Synthesis).
